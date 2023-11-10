@@ -1,0 +1,183 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الرئيسية </title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    
+
+    <div class="loc">
+        <a href="{% url 'upload_status' %}" class="upload">رفع حالة</a>
+        <a href="{% url 'logout' %}" class="logout">تسجيل الخروج</a>
+    </div>
+
+    <div class="left">
+
+
+        <div class="users">
+
+
+            {% for user in users %}
+                <a href="{% url 'status' user.uuid %}" class="user {% if user == current_user %}active{% endif %}">
+                    <img src="{{user.picture.url}}" alt="">
+                    <p>{{user.full_name}}</p>
+                </a>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+    <div class="right">
+
+        <div class="container">
+
+            <div class="info">
+
+                <div class="u">
+                    <img src="{{current_user.picture.url}}" alt="">
+                    <p>{{current_user.full_name}}</p>
+                </div>
+
+                <div class="options">
+                    <small id="date"></small> 
+                    <a href="#" id="DelBtn"></a>
+                </div>
+
+            </div>
+
+
+            <div class="media" id="status">
+            </div>
+
+            <div class="controls">
+                <div class="btns">
+                    <button type="button" id="prev-status">السابق</button>
+                    <button type="button" id="next-status">التالي</button>
+                </div>
+
+                <p class="views">المشاهدات : <small id="views-num"></small></p>
+            </div>
+
+        </div>
+
+    
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="{% static 'js/socket.js' %}"></script>
+
+    <script>
+        
+
+        let current = 0 ;
+
+        var next = document.getElementById('next-status');
+        var previous = document.getElementById('prev-status');
+        var status_container = document.getElementById('status')
+        var date = document.getElementById('date')
+
+        var deleletBtn = document.getElementById('DelBtn')
+        var ViewCounter = document.getElementById('views-num')
+
+
+
+        var user_status = [];
+
+
+        function GetUserStatus (){
+
+
+           $.ajax({
+                method:"GET",
+                url:".",
+                data:{'api':'1'},
+                success:function(response){
+                    var stories = response;
+                
+                    stories.forEach(s => {
+
+                        user_status.push(s)
+                
+                    })
+
+                    AppendStories(current)
+
+                }
+            })
+
+
+            
+        }
+
+        GetUserStatus()
+
+        function AppendStories (index) {
+            var story = user_status[index];
+            
+            date.textContent = story.date;
+            ViewCounter.textContent = story.views
+            
+            if ('{{user.uuid}}' == '{{current_user.uuid}}'){
+
+                deleletBtn.setAttribute('href',`?del=${story.uuid}`)
+                deleletBtn.textContent = 'حذف'
+            }else{
+                deleletBtn.remove()
+            }
+
+            let content ;
+            
+            if ( story.type == 'img' ){
+                content = document.createElement('img');
+                content.setAttribute('src',story.url)
+            }else{
+                content = document.createElement('video');
+                content.setAttribute('src',story.url)
+                content.setAttribute('controls','')
+            }
+
+
+            status_container.innerHTML = ''
+            status_container.appendChild(content)
+        }
+
+
+        // append first story
+
+
+        next.addEventListener('click',()=>{
+            
+            current++    
+            if (current < user_status.length){
+                AppendStories(current)
+            }else{
+                current--
+            }
+
+        })
+
+        previous.addEventListener('click',()=>{
+            
+            current--    
+            if (current >= 0){
+                AppendStories(current)
+            }else{
+                current++
+            }
+
+        })
+
+
+    </script>
+
+
+
+</body>
+</html>

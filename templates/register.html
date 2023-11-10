@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> انشاء حساب </title>
+    <link rel="stylesheet" href="{% static 'css/register_login.css' %}">
+</head>
+<body>
+    
+
+    <form class="container" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="img-area">
+            <input type="file" name="img" id="imgFile" hidden>
+            <img src="{% static 'images/user.png' %}" id="imgView" alt="">
+            <button type="button" id="imgBtn">ضاافة صورة</button>
+        </div>
+
+        <input required name="full_name" type="text" placeholder="اسمك بالكامل">
+        <input required name="email" type="email" placeholder="البريد الالكتروني">
+        <input required name="password" type="password" placeholder="كلمة المرور">
+        
+        <div class="btns">
+            <a href="{% url 'login' %}">تسجيل الدخول</a>
+            <button type="submit">تسجيل</button>
+        </div>
+    </form>
+
+
+    <script src="{% static 'js/upload-user-pic.js' %}"></script>
+    
+</body>
+</html>

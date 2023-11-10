@@ -1,0 +1,46 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الرئيسية </title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    
+
+    <div class="loc">
+        <a href="{% url 'upload_status' %}" class="upload">رفع حالة</a>
+        <a href="{% url 'logout' %}" class="logout">تسجيل الخروج</a>
+    </div>
+
+    <div class="left">
+
+        <div class="users">
+
+
+            {% for user in users %}
+                <a id="{{user.uuid}}" href="{% url 'status' user.uuid %}" class="user">
+                    <img src="{{user.picture.url}}" alt="">
+                    <p>{{user.full_name}}</p>
+                </a>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+    <div class="right">
+
+        <!-- if user didn't go to user status -->
+        <p>اختر صديقك لمشاهدة حالاتة</p>
+    
+    </div>
+
+
+    <script src="{% static 'js/socket.js' %}"></script>
+
+</body>
+</html>

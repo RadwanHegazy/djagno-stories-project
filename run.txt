@@ -1,0 +1,8 @@
+[RUN CELERY] 
+    1 - celery -A Project worker --pool=solo info 
+    2 - open django shell and type :
+        1 - from story_app.tasks import CheckStories
+        2 - CheckStories.delay()
+
+[RUN DJANGO]
+    - python manage.py runserver

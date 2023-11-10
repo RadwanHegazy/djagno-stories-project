@@ -1,0 +1,261 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --var-font:"Cairo",sans-serif;
+}
+body {
+    background-color: #444444;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+
+body .left {
+    width: 25%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #3E3D3D;
+}
+
+body .right {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body .right > p {
+    font-family: var(--var-font);
+    color: #fff;
+    font-size: 2rem;
+}
+
+
+
+
+.left .up {
+    position: relative;
+}
+
+
+.left .up button {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    padding: 3px 6px;
+    font-family: var(--var-font);
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #399F51;
+    cursor: pointer;
+}
+.left .up input {
+    width: 100%;
+    height: 50px;
+    direction: rtl;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-family: var(--var-font);
+    background-color: #74717148;
+    color: #ABABAB;
+    font-weight: bold;
+    padding-left: 70px;
+}
+
+
+.users {
+    width: 100%;
+    height: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.users .user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-evenly;
+    height: auto;
+    padding: 6px 12px;
+    background-color: #444444;
+    border-radius: 12px;
+    text-decoration: none;
+    height: 100px;
+}
+
+.users .user img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.user p {
+    font-family: var(--var-font);
+    color: #ABABAB;
+    font-weight: bold;
+}
+
+
+.users .user.active {
+    background-color: #399F51;
+}
+
+
+.users .user.active p {
+    color: #fff;
+}
+
+
+.right .container {
+    background-color:#3E3D3D;
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.right .container .info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.info .u {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info .u img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.info .u p {
+    color: #fff;
+    font-family: var(--var-font);
+}
+
+.info .options {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.info .options a {
+    color: crimson;
+    font-family: var(--var-font);
+}
+
+.info .options small {
+    color: #757373;
+    font-weight: bold;
+    font-family: var(--var-font);
+}
+
+.container .media {
+    width: 100%;
+    height: 400px;
+    border-radius: 30px;
+    background-color: #444444;
+    overflow: hidden;
+}
+
+.container .controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .btns {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.container .btns button {
+    width: 50px;
+    height: 35px;
+    border-radius: 8px;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.controls .views {
+    color: #fff;
+    font-family: var(--var-font);
+    direction: rtl;
+}
+
+.media img , .media video{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.loc {
+    position: fixed;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+
+.loc a {
+    display: flex;
+    width: 120px;
+    padding: 4px 8px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: var(--var-font);
+    border-radius: 6px;
+}
+
+.loc .logout {
+    background-color: crimson;
+    box-shadow: 0px 0px 25px crimson;
+}
+
+.loc .upload {
+    background-color: #1E45C5;
+    box-shadow: 0px 0px 25px #1E45C5;
+}
+

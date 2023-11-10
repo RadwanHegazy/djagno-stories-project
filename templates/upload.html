@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> رفع فيديو </title>
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+</head>
+<body>
+    
+
+    <div class="container" method="POST">
+
+        <input type="file" name="" id="file" hidden>
+        <div class="upload">
+            <button type="button" id="video">اضافة فيديو</button>
+            <button type="button" id="img">اضافة صورة</button>
+        </div>
+
+
+        
+        <div class="media" id="media"></div>
+        
+
+
+        <div class="btns">
+            <a href="{% url 'home' %}">الرجوع للصفحة الرئيسية</a>
+            <button id="done">اضافة</button>
+        </div>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="{% static 'js/upload-vid-img.js' %}"></script>
+
+
+</body>
+</html>
